@@ -26,13 +26,20 @@ return {...state,cart:temp}
         return { ...state, cart: temp.filter(item=>item.amount>0) };
     }
     if(action.type=='TOTAL'){
-        const newTotal = state.cart.reduce((item) => {
-          item.amount * item.price;
-        });
-        const newAmount = state.cart.reduce((item) => {
-          item.amount;
-        });
+        const newTotal = state.cart.reduce((total,item) => {
+           return total+item.amount * item.price;
+        },0);
+        const newAmount = state.cart.reduce((total,item) => {
+           return total+item.amount;
+        },0);
         return {...state,total:newTotal,amount:newAmount}
+    }
+    if(action.type=='LOADING'){
+      return {...state,loading:true}
+    }
+    if(action.type=='FETCH'){
+      return {...state,loading:false,cart:action.payload}
     }
     return state
 }
+export default reducer

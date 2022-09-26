@@ -11,8 +11,9 @@ const CartItem = ({ id, img, title, price, amount }) => {
         {/* remove button */}
         <button
           className='remove-btn'
-          onClick={removeItem(id)}
+          onClick={()=>removeItem(id)}
         >
+        
           remove
         </button>
       </div>
@@ -35,5 +36,5 @@ const CartItem = ({ id, img, title, price, amount }) => {
     </article>
   )
 }
-
+//错误：Cannot update a component while rendering a different component 原因：没有使用箭头函数
 export default CartItem

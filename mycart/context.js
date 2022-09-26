@@ -18,6 +18,17 @@ const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer,initialState)
 
 
+
+  const fetchDate=async()=>{
+dispatch({type:'LOADING'})
+const response=await fetch(url)
+const data=await response.json()
+dispatch({type:'FETCH',payload:data})
+  }
+  useEffect(()=>{
+    fetchDate()
+  },[])
+
   const clearCart =()=>{
     dispatch({type: 'CLEAR_CART'})
   }
